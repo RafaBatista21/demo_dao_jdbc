@@ -42,9 +42,9 @@ public class SellerDaoJDBC implements SellerDao {
 		PreparedStatement st = null;
 		ResultSet rs = null;
 		try {
-			st = conn.prepareStatement("SELECT seller.*,department.Name as DepName"
-					+ "FROM seller INNER JOIN department"
-					+ "ON seller.DepartmentId = department.Id"
+			st = conn.prepareStatement("SELECT seller.*,department.Name as DepName "
+					+ "FROM seller INNER JOIN department "
+					+ "ON seller.DepartmentId = department.Id "
 					+ "WHERE seller.Id = ?");
 
 			st.setInt(1, id);
@@ -56,9 +56,9 @@ public class SellerDaoJDBC implements SellerDao {
 				Seller obj = new Seller();
 				obj.setId(rs.getInt("Id"));
 				obj.setName(rs.getString("Name"));
-				obj.setEmail(rs.getStrimg("Email"));
+				obj.setEmail(rs.getString("Email"));
 				obj.setBaseSalary(rs.getDouble("BaseSalary"));
-				obj.setBirthDate(rs.getDouble("BirthDate"));
+				obj.setBirthDate(rs.getDate("BirthDate"));
 				obj.setDepartment(dep);
 				return obj;				
 			}
